@@ -1,17 +1,25 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
+  private chatCollection: AngularFirestoreCollection<Grupo>
+  grupos: Observable<Grupo[]>;
   private grupo: any;
   private usuario: any;
 
-  constructor() { }
+  constructor(
+    private afs: AngularFirestore
+  ) {
+    this.chatCollection = afs.collection<Grupo>('conversas');
+  }
 
   escolherGrupo(grupo) {
-    return this.grupo =  {
+    return this.grupo = {
       id: 1,
       nome: 'Zueira',
       imagem: '',
@@ -37,7 +45,7 @@ export class ChatService {
   }
 
   sortearUsuario() {
-    const usuario =  {
+    const usuario = {
       id: 1,
       nome: 'Zorro',
       image: ''
@@ -77,5 +85,8 @@ export class ChatService {
     console.log(texto);
     return true;
   }
+
+}
+export class Grupo {
 
 }
