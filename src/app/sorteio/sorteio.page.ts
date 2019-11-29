@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../chat.service';
+import { RouterModule, Routes, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-sorteio',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sorteio.page.scss'],
 })
 export class SorteioPage implements OnInit {
-
-  constructor() { }
+usuario;
+  constructor(
+    private servico:ChatService
+  ) { }
 
   ngOnInit() {
+   this.usuario = this.servico.sortearUsuario();
   }
 
 }
+
+

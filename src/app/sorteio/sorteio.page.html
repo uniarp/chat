@@ -1,9 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sorteio</ion-title>
+    <ion-title>Voce vai ser :</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-avatar>
+        <img [src]= "usuario.image">
+      </ion-avatar>
+    <ion-label> {{usuario.nome}} </ion-label>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-button expand="full" fill="outline" routerLink=
+      "/regras" >Avançar</ion-button>
+    </ion-toolbar>
+  </ion-footer>
