@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -38,9 +39,8 @@ export class ChatService {
 
   sortearUsuario() {
     const usuario =  {
-      id: 1,
       nome: 'Zorro',
-      image: ''
+      image: "https://static.pr.ricmais.com.br/ricmaispr/uploads/2019/08/zorrodisney1957-1024x632.jpg"
     };
     this.usuario = usuario;
     return usuario;
