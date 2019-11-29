@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService, Grupo } from '../chat.service';
 
 @Component({
   selector: 'app-grupo',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GrupoPage implements OnInit {
 
-  constructor() { }
+  grupos = [];
 
-  ngOnInit() {
+  constructor(private chatService: ChatService) {  }
+
+  ngOnInit() { 
+    this.listarGrupo();
+   }
+
+  listarGrupo(){
+    this.chatService.listarGrupo().subscribe(elemento => {
+      this.grupos = elemento,
+      console.log(elemento);
+    });
   }
 
 }

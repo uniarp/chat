@@ -7,41 +7,27 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
 
-  private chatCollection: AngularFirestoreCollection<Grupo>
+  private chatCollection: AngularFirestoreCollection<Grupo>;
   grupos: Observable<Grupo[]>;
-  private grupo: any;
+  private grupo: Grupo;
   private usuario: any;
 
-  constructor(
-    private afs: AngularFirestore
-  ) {
+  constructor( private afs: AngularFirestore ) {
     this.chatCollection = afs.collection<Grupo>('conversas');
+    this.grupos = this.chatCollection.valueChanges();
   }
 
   escolherGrupo(grupo) {
     return this.grupo = {
-      id: 1,
+      id: '1',
       nome: 'Zueira',
       imagem: '',
-      regras: 'blablabla'
+      regras: ['blablá']
     };
   }
 
-  listarGrupo() {
-    return [
-      {
-        id: 1,
-        nome: 'Zueira',
-        imagem: '',
-        regras: 'blablabla'
-      },
-      {
-        id: 2,
-        nome: 'Sério',
-        imagem: '',
-        regras: 'blablabla 123'
-      },
-    ];
+  listarGrupo(): Observable<Grupo[]> {
+    return this.grupos;
   }
 
   sortearUsuario() {
@@ -88,5 +74,8 @@ export class ChatService {
 
 }
 export class Grupo {
-
+  id: string;
+  nome: string;
+  imagem: string;
+  regras: [string];
 }
