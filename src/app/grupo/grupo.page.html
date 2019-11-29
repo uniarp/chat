@@ -1,9 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>grupo</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="back">
+<ion-item>
+      <ion-label position="stacked">Selecionar Grupo</ion-label>
+      <ion-select [(ngModel)]="grupo" placeholder="Selecionar Grupo"> 
+        <ion-select-option *ngFor="let grupo of grupos" [value]="grupo">
+          {{grupo.nome}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-button color="light" [routerLink]="['/sorteio']">
+      <FONT size="5" color="000"> Avançar </FONT>
+    </ion-button>
 
+  </div>
 </ion-content>
