@@ -20,10 +20,10 @@ export class ChatService {
 
   escolherGrupo(grupo) {
     return this.grupo = {
-      id: '1',
+      id: 'CeUrfUZFEjfrDObqNesP',
       nome: 'Zueira',
       imagem: '',
-      regras: ['blablá']
+      regras: ['blablabla']
     };
   }
 
@@ -44,32 +44,22 @@ export class ChatService {
     return this.grupo.regras;
   }
 
-  listarMensagens() {
-    return [
-      {
-        texto: 'Olá',
-        dataHora: 1234567,
-        usuario: {
-          id: 1,
-          nome: 'Zorro',
-          image: ''
-        }
-      },
-      {
-        texto: 'Boa tarde',
-        dataHora: 1234567,
-        usuario: {
-          id: 1,
-          nome: 'Zorro',
-          image: ''
-        }
-      }
-    ];
+  listarMensagens(grupo): Observable<Grupo> {
+    return this.afs.doc<Grupo>('conversas/' + grupo.id).valueChanges();
   }
 
-  enviarMensagem(texto) {
-    console.log(texto);
-    return true;
+  enviarMensagem(textoMensagem) {
+    this.sortearUsuario();
+    const idMensagem = this.afs.createId();
+    const timestamp = new Date();
+    const mensagem = {
+      arquivo: '',
+      dataHora: timestamp,
+      texto: textoMensagem,
+      usuario: this.usuario
+    };
+
+    return this.afs.doc('conversas/' + this.grupo.id + '/mensagens/' + idMensagem).set({ ...mensagem });
   }
 
 }
